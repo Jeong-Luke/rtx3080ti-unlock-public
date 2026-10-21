@@ -1,0 +1,3 @@
+/uefi/build.sh text eol=lf
+/boot/*.install text eol=lf
+/boot/*.conf text eol=lf

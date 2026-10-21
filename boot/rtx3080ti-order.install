@@ -1,0 +1,22 @@
+#!/bin/bash
+# Keep LF line endings for Bash on Linux.
+# mkinitcpio build hook: writes only into the image, never the host's units.
+build() {
+    add_module rtx3080ti_unlock
+    add_file - /usr/lib/systemd/system/rtx3080ti-unlock.service 644 <<'UNIT'
+[Unit]
+Description=Complete optional GA102 RTX 3080 Ti experiment before GPU driver discovery
+DefaultDependencies=no
+Before=sysinit.target systemd-modules-load.service systemd-udevd.service systemd-udev-trigger.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/modprobe rtx3080ti_unlock
+TimeoutStartSec=90s
+UNIT
+    add_symlink /usr/lib/systemd/system/sysinit.target.wants/rtx3080ti-unlock.service ../rtx3080ti-unlock.service
+}
+help() {
+    echo 'Order rtx3080ti_unlock before systemd module workers and udev in the initrd.'
+}

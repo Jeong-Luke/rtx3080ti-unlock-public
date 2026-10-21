@@ -1,0 +1,38 @@
+{
+  "port": "RTX 3080 Ti 12GB GA102 experimental UEFI and Linux source port",
+  "version": "0.4.0-rtx3080ti",
+  "target_pci_id": "10de:2208",
+  "target_subsystem_id": "10de:1535",
+  "target_memory_mib": 12288,
+  "upstream": {
+    "url": "https://github.com/IHaBiS02/ga107-unlock",
+    "commit": "5e6b3600bb01142891d43d62120727e96911d1a6"
+  },
+  "original": {
+    "url": "https://github.com/Zagitta/gpu-unlock",
+    "commit": "0ebdb1c6308b6a2072be5bf04513472942541956"
+  },
+  "hardware_execution_tested": true,
+  "windows_unlock_implemented": "experimental UEFI adapter; one exact-board observation recorded below",
+  "windows_handoff_tested": true,
+  "validation_context": {
+    "scope": "One exact board only; not general compatibility or recovery proof",
+    "board": {
+      "pci_id": "10de:2208",
+      "subsystem_id": "10de:1535",
+      "memory_mib": 12288,
+      "vbios": "94.02.71.00.83",
+      "windows_nvidia_driver": "617.42"
+    },
+    "observed_outcome": {
+      "ss0": "0x88888888",
+      "ss1": "0x6 preserved",
+      "flr": "completed",
+      "windows_return": "completed"
+    },
+    "independent_hardware_retest_by_packager": false,
+    "linux_module_hardware_validation": "not established by the Windows UEFI test",
+    "binary_distribution": "source-only; generated firmware and EFI are not included",
+    "firmware_redistribution_approval": "not claimed"
+  }
+}

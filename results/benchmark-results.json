@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "title": "RTX 3080 Ti dense GEMM precision comparison",
+  "workload": {
+    "operation": "Square dense matrix multiplication",
+    "matrix_size": 4096,
+    "iterations_per_sample": 20,
+    "samples": 5,
+    "warmup_iterations": 10,
+    "seed": 20261019,
+    "cuda_device_ordinal": 0,
+    "timing": {
+      "method": "CUDA events; elapsed time for each sample divided by iterations",
+      "summary": "Median of the five per-iteration sample times",
+      "throughput_formula": "2 * N^3 / (median_ms / 1000) / 10^12; FMA counts as 2 operations"
+    },
+    "precision_controls": {
+      "FP32": {
+        "tf32": false,
+        "float32_matmul_precision": "highest",
+        "reduced_precision_reduction": false
+      },
+      "FP16": {
+        "reduced_precision_reduction": false
+      },
+      "BF16": {
+        "reduced_precision_reduction": false
+      }
+    },
+    "accuracy_check": {
+      "reference": "Independent FP64 matrix product for the first 32 output rows, using all K terms and all columns",
+      "relative_l2": "norm(measured - reference) / max(norm(reference), 1e-30)",
+      "finite_check": "All elements of the full output matrix must be finite",
+      "checked_output_rows": 32,
+      "thresholds_are_strict_less_than": true,
+      "relative_l2_limit": {
+        "FP32": 0.00001,
+        "FP16": 0.02,
+        "BF16": 0.02
+      }
+    }
+  },
+  "hardware_and_software": {
+    "gpu": "NVIDIA GeForce RTX 3080 Ti",
+    "compute_capability": "8.6",
+    "reported_memory_mib": 12287,
+    "operating_system": "Windows",
+    "pytorch": "2.13.0+cu130",
+    "cuda": "13.0"
+  },
+  "runs": {
+    "Windows": {
+      "state": "Windows baseline boot; experiment USB absent",
+      "results": {
+        "FP32": {
+          "median_ms": 5.879443359375,
+          "tflops": 23.376184626874288,
+          "sample_ms": [
+            5.908531188964844,
+            5.831679916381836,
+            5.855846405029297,
+            5.879961776733398,
+            5.879443359375
+          ],
+          "relative_l2": 0.000001147595475736877,
+          "checked_output_rows": 32,
+          "finite_full_output": true,
+          "accuracy_check_passed": true
+        },
+        "FP16": {
+          "median_ms": 2.203289604187012,
+          "tflops": 62.378977875091174,
+          "sample_ms": [
+            2.228531265258789,
+            2.280849647521973,
+            2.203289604187012,
+            2.056438446044922,
+            1.9848703384399413
+          ],
+          "relative_l2": 0.0002072672638303298,
+          "checked_output_rows": 32,
+          "finite_full_output": true,
+          "accuracy_check_passed": true
+        },
+        "BF16": {
+          "median_ms": 1.9427839279174806,
+          "tflops": 70.74330371845537,
+          "sample_ms": [
+            1.9061759948730468,
+            1.9463167190551758,
+            1.9501056671142578,
+            1.9427839279174806,
+            1.9418607711791993
+          ],
+          "relative_l2": 0.0016607262746021895,
+          "checked_output_rows": 32,
+          "finite_full_output": true,
+          "accuracy_check_passed": true
+        }
+      },
+      "measured_source_sha256": {
+        "FP32": "45a5f1f5ef189ed4aab234e4e0744e308dcc2a7856f8e201f9fcdb9dc5044016",
+        "FP16_BF16": "e35d852570a0464e94f4e6e3c2c6243aae8d62877156c394797fbdc04a8408b2"
+      },
+      "original_measurement_json_sha256": {
+        "FP32": "f41982c80fd8d6fd84128dffe5e643d1ec45341cdcc6ae32db2dff5543c01d45",
+        "FP16_BF16": "aa7c120c8939c01bb1124b32981642879fe3598505eaacdb3a64eda72edac8d7"
+      }
+    },
+    "Applied": {
+      "state": "Applied configuration on the same Windows boot",
+      "results": {
+        "FP32": {
+          "median_ms": 5.8811393737792965,
+          "tflops": 23.369443357313255,
+          "sample_ms": [
+            5.914368057250977,
+            5.882163238525391,
+            5.829632186889649,
+            5.857433700561524,
+            5.8811393737792965
+          ],
+          "relative_l2": 0.000001147595475736877,
+          "checked_output_rows": 32,
+          "finite_full_output": true,
+          "accuracy_check_passed": true
+        },
+        "FP16": {
+          "median_ms": 1.2095999717712402,
+          "tflops": 113.62347609081499,
+          "sample_ms": [
+            1.1764304161071777,
+            1.1906047821044923,
+            1.2095999717712402,
+            1.2166607856750489,
+            1.2169055938720703
+          ],
+          "relative_l2": 0.0002072672638303298,
+          "checked_output_rows": 32,
+          "finite_full_output": true,
+          "accuracy_check_passed": true
+        },
+        "BF16": {
+          "median_ms": 1.193216037750244,
+          "tflops": 115.18362905273638,
+          "sample_ms": [
+            1.0691583633422852,
+            1.1809375762939454,
+            1.193216037750244,
+            1.1989503860473634,
+            1.1990015983581543
+          ],
+          "relative_l2": 0.0016607262746021895,
+          "checked_output_rows": 32,
+          "finite_full_output": true,
+          "accuracy_check_passed": true
+        }
+      },
+      "measured_source_sha256": {
+        "FP32": "45a5f1f5ef189ed4aab234e4e0744e308dcc2a7856f8e201f9fcdb9dc5044016",
+        "FP16_BF16": "e35d852570a0464e94f4e6e3c2c6243aae8d62877156c394797fbdc04a8408b2"
+      },
+      "original_measurement_json_sha256": {
+        "FP32": "1ad73be7f7ff395d25b5f60de89362247e1353757a4997c1693bdd08342455f6",
+        "FP16_BF16": "435f3824f98076c89605f8b1cbc371fc35c67c9b3bde45ece2ed3ac61ed4984f"
+      }
+    }
+  },
+  "preflight_summary": {
+    "each_state": {
+      "consecutive_preflight_samples": 6,
+      "gpu_utilization_percent": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "gpu_utilization_percent_immediately_before_each_test_process": 0
+    },
+    "earlier_nonzero_observation_before_final_zero_for_reduced_precision": {
+      "Applied_percent": 100,
+      "Windows_percent": 49
+    },
+    "interpretation": "These point observations do not show utilization during computation or prove that the GPU remained idle."
+  },
+  "historical_observation_excluded": {
+    "approximate_fp32_tflops": 10,
+    "reason": "Confounded by display load",
+    "included_in_controlled_comparison": false,
+    "note": "Excluded from this controlled comparison, not erased."
+  },
+  "limitations": [
+    "No claim is made that the GPU remained idle during computation.",
+    "Clocks and power were not held fixed.",
+    "One recorded boot per state; this is not a repeated-independent-boot study.",
+    "No long-term stability claim.",
+    "Dense GEMM throughput is not an application-wide speedup."
+  ],
+  "provenance_note": "Source hashes identify the original measured scripts; measurement JSON hashes identify the original result files. The packaged scripts omit report-only local interpreter-path and raw nvidia-smi metadata while retaining the matrix workload, precision settings, timing, and accuracy-check behavior."
+}

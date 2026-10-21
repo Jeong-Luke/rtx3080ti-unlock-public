@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="948" viewBox="0 0 1280 948" role="img" aria-labelledby="chartTitle chartDesc" font-family="'Segoe UI','Malgun Gothic','Noto Sans KR','Apple SD Gothic Neo',sans-serif">
+  <title id="chartTitle">Windows GPU UNLOCK — low-background-load RTX 3080 Ti comparison</title>
+  <desc id="chartDesc">Grouped bars for FP32, FP16 and BF16 under low background load. FP32 is effectively unchanged at minus 0.03 percent, FP16 rises 82.2 percent and BF16 rises 62.8 percent from baseline to applied boot.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#080d18"/>
+      <stop offset="1" stop-color="#05080f"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#101b2d"/>
+      <stop offset="1" stop-color="#0b1422"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e8356f"/>
+      <stop offset="1" stop-color="#ff6fa5"/>
+    </linearGradient>
+    <linearGradient id="grey" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5a6a80"/>
+      <stop offset="1" stop-color="#71839b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="948" fill="url(#bg)"/>
+
+  <!-- Header -->
+  <text x="64" y="62" font-size="11" letter-spacing="2.6" font-weight="600" fill="#4f6f92">LOW-BACKGROUND-LOAD COMPARISON</text>
+  <text x="1216" y="62" font-size="11" letter-spacing="2.2" font-weight="600" fill="#4f6f92" text-anchor="end">RTX 3080 Ti · 12 GB</text>
+  <text x="64" y="110" font-size="46" font-weight="700" letter-spacing="-0.6" fill="#f2f7ff">Windows GPU UNLOCK</text>
+  <text x="64" y="146" font-size="17.5" font-weight="400" fill="#8ea6c0">RTX 3080 Ti Windows CUDA 벤치마크 — 낮은 백그라운드 부하 비교</text>
+
+  <!-- Chart panel -->
+  <rect x="48" y="176" width="1184" height="716" rx="24" fill="url(#panel)" stroke="#1d2d47" stroke-width="1"/>
+
+  <!-- Legend -->
+  <rect x="88" y="200" width="16" height="16" rx="4.5" fill="url(#grey)"/>
+  <text x="113" y="213" font-size="14" fill="#9db0c7">미재적용 Windows 부팅</text>
+  <rect x="330" y="200" width="16" height="16" rx="4.5" fill="url(#pink)"/>
+  <text x="355" y="213" font-size="14" fill="#9db0c7">SS0 적용 부팅</text>
+  <text x="1200" y="213" font-size="12" fill="#6b8299" text-anchor="end">공통 0–120 TFLOPS 스케일</text>
+  <line x1="80" y1="236" x2="1200" y2="236" stroke="#17253b" stroke-width="1"/>
+
+  <!-- Shared zero-based scale: 0–120 TFLOPS across 530 px -->
+  <g stroke="#17253b" stroke-width="1">
+    <line x1="360" y1="250" x2="360" y2="838" stroke="#22344e" stroke-width="1.5"/>
+    <line x1="448.33" y1="250" x2="448.33" y2="838"/>
+    <line x1="536.67" y1="250" x2="536.67" y2="838"/>
+    <line x1="625" y1="250" x2="625" y2="838"/>
+    <line x1="713.33" y1="250" x2="713.33" y2="838"/>
+    <line x1="801.67" y1="250" x2="801.67" y2="838"/>
+  </g>
+  <g font-size="12" fill="#52698a" text-anchor="middle" style="font-variant-numeric:tabular-nums">
+    <text x="360" y="862">0</text>
+    <text x="448.33" y="862">20</text>
+    <text x="536.67" y="862">40</text>
+    <text x="625" y="862">60</text>
+    <text x="713.33" y="862">80</text>
+    <text x="801.67" y="862">100</text>
+    <text x="890" y="862">120</text>
+  </g>
+  <text x="918" y="862" font-size="11" letter-spacing="1.5" font-weight="600" fill="#52698a">TFLOPS</text>
+
+  <line x1="88" y1="446" x2="1200" y2="446" stroke="#142033" stroke-width="1"/>
+  <line x1="88" y1="642" x2="1200" y2="642" stroke="#142033" stroke-width="1"/>
+
+  <!-- FP32 row: effectively unchanged -->
+  <g>
+    <rect x="64" y="324" width="4" height="48" rx="2" fill="#7d8ea3"/>
+    <text x="88" y="355" font-size="20" font-weight="600" fill="#dfe8f4">FP32 · TF32 끔</text>
+    <rect x="360" y="315" width="103.24" height="28" rx="6" fill="url(#grey)"/>
+    <text x="477.24" y="334.5" font-size="17" font-weight="600" fill="#aebccd" style="font-variant-numeric:tabular-nums">23.38</text>
+    <rect x="360" y="353" width="103.22" height="28" rx="6" fill="url(#pink)"/>
+    <text x="477.22" y="372.5" font-size="17" font-weight="600" fill="#ffb3cc" style="font-variant-numeric:tabular-nums">23.37</text>
+    <text x="1200" y="364" font-size="48" font-weight="700" letter-spacing="-0.5" fill="#c9d4e2" text-anchor="end" style="font-variant-numeric:tabular-nums">−0.03%</text>
+    <text x="1200" y="390" font-size="12" letter-spacing="1" font-weight="600" fill="#9fb0c6" text-anchor="end">거의 동일</text>
+  </g>
+
+  <!-- FP16 row -->
+  <g>
+    <rect x="64" y="520" width="4" height="48" rx="2" fill="#ff5c93" opacity="0.8"/>
+    <text x="88" y="551" font-size="20" font-weight="600" fill="#dfe8f4">FP16 / FP32 누산</text>
+    <rect x="360" y="511" width="275.51" height="28" rx="6" fill="url(#grey)"/>
+    <text x="649.51" y="530.5" font-size="17" font-weight="600" fill="#aebccd" style="font-variant-numeric:tabular-nums">62.38</text>
+    <rect x="360" y="549" width="501.84" height="28" rx="6" fill="url(#pink)"/>
+    <text x="875.84" y="568.5" font-size="17" font-weight="600" fill="#ffb3cc" style="font-variant-numeric:tabular-nums">113.62</text>
+    <text x="1200" y="560" font-size="48" font-weight="700" letter-spacing="-0.5" fill="#ff7fae" text-anchor="end" style="font-variant-numeric:tabular-nums">+82.2%</text>
+    <text x="1200" y="586" font-size="12" letter-spacing="1.6" font-weight="600" fill="#ff9cbe" text-anchor="end">증가</text>
+  </g>
+
+  <!-- BF16 row -->
+  <g>
+    <rect x="64" y="716" width="4" height="48" rx="2" fill="#ff5c93" opacity="0.8"/>
+    <text x="88" y="747" font-size="20" font-weight="600" fill="#dfe8f4">BF16 / FP32 누산</text>
+    <rect x="360" y="707" width="312.45" height="28" rx="6" fill="url(#grey)"/>
+    <text x="686.45" y="726.5" font-size="17" font-weight="600" fill="#aebccd" paint-order="stroke" stroke="#0c1626" stroke-width="4" stroke-linejoin="round" style="font-variant-numeric:tabular-nums">70.74</text>
+    <rect x="360" y="745" width="508.73" height="28" rx="6" fill="url(#pink)"/>
+    <text x="882.73" y="764.5" font-size="17" font-weight="600" fill="#ffb3cc" style="font-variant-numeric:tabular-nums">115.18</text>
+    <text x="1200" y="756" font-size="48" font-weight="700" letter-spacing="-0.5" fill="#ff7fae" text-anchor="end" style="font-variant-numeric:tabular-nums">+62.8%</text>
+    <text x="1200" y="782" font-size="12" letter-spacing="1.6" font-weight="600" fill="#ff9cbe" text-anchor="end">증가</text>
+  </g>
+
+</svg>
